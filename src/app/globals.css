@@ -1,0 +1,286 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #071525;
+  --color-midnight: #102e46;
+  --color-cyan: #36ddf5;
+  --color-offwhite: #f2f5f7;
+
+  --font-display: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-cine: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-navy);
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-navy);
+  color: var(--color-offwhite);
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-cyan) 35%, transparent);
+  color: var(--color-offwhite);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-cyan);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+
+/* ---------- Typography scale ---------- */
+.t-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 7vw, 6.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+.t-h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 4.8vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+.t-h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(1.35rem, 2.3vw, 2rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.t-quote {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.5rem, 3.2vw, 2.75rem);
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+.t-lead {
+  font-size: clamp(1.125rem, 1.5vw, 1.375rem);
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--color-offwhite) 82%, transparent);
+}
+.t-body {
+  font-size: 1.0625rem;
+  line-height: 1.78;
+  color: color-mix(in srgb, var(--color-offwhite) 74%, transparent);
+}
+.t-eyebrow {
+  font-family: var(--font-display);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--color-cyan);
+}
+
+/* ---------- Surfaces & effects ---------- */
+.section-pad {
+  padding-block: clamp(5.5rem, 12vw, 11rem);
+}
+.container-x {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 2.5rem;
+  }
+}
+
+.glow-text {
+  text-shadow: 0 0 40px color-mix(in srgb, var(--color-cyan) 45%, transparent);
+}
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-cyan) 55%, transparent),
+    transparent
+  );
+}
+.glass {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--color-midnight) 70%, transparent),
+    color-mix(in srgb, var(--color-navy) 70%, transparent)
+  );
+  border: 1px solid color-mix(in srgb, var(--color-cyan) 18%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+/* Buttons */
+.btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 1rem 1.75rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  overflow: hidden;
+  isolation: isolate;
+  transition:
+    transform 0.5s var(--ease-cine),
+    box-shadow 0.5s var(--ease-cine),
+    background-color 0.4s,
+    color 0.4s,
+    border-color 0.4s;
+}
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 0.45) 50%, transparent 80%);
+  transform: translateX(-120%);
+  transition: transform 0.9s var(--ease-cine);
+}
+.btn:hover::after {
+  transform: translateX(120%);
+}
+.btn:hover {
+  transform: translateY(-2px);
+}
+.btn-primary {
+  background: var(--color-cyan);
+  color: var(--color-navy);
+  box-shadow: 0 0 0 1px var(--color-cyan), 0 10px 40px -10px color-mix(in srgb, var(--color-cyan) 70%, transparent);
+}
+.btn-primary:hover {
+  box-shadow: 0 0 0 1px var(--color-cyan), 0 14px 56px -8px color-mix(in srgb, var(--color-cyan) 90%, transparent);
+}
+.btn-ghost {
+  color: var(--color-offwhite);
+  border: 1px solid color-mix(in srgb, var(--color-cyan) 45%, transparent);
+  background: color-mix(in srgb, var(--color-navy) 40%, transparent);
+  backdrop-filter: blur(8px);
+}
+.btn-ghost:hover {
+  border-color: var(--color-cyan);
+  background: color-mix(in srgb, var(--color-cyan) 12%, transparent);
+  box-shadow: 0 0 36px -8px color-mix(in srgb, var(--color-cyan) 55%, transparent);
+}
+.btn .arrow {
+  transition: transform 0.5s var(--ease-cine);
+}
+.btn:hover .arrow {
+  transform: translateX(5px);
+}
+
+/* Page enter (CSS only, runs on first paint and every route change) */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.page-enter {
+  animation: page-in 0.9s var(--ease-cine) both;
+}
+
+@keyframes beam-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.beam-pulse {
+  animation: beam-pulse 6s ease-in-out infinite;
+}
+@keyframes ring-out {
+  from {
+    transform: scale(0.4);
+    opacity: 0.55;
+  }
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.ring-out {
+  animation: ring-out 7s linear infinite;
+}
+
+/* Underline inputs */
+.field {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-offwhite) 25%, transparent);
+  padding: 0.9rem 0 0.7rem;
+  color: var(--color-offwhite);
+  font-size: 1.125rem;
+  transition: border-color 0.4s, box-shadow 0.4s;
+  border-radius: 0;
+}
+.field::placeholder {
+  color: color-mix(in srgb, var(--color-offwhite) 30%, transparent);
+}
+.field:hover {
+  border-bottom-color: color-mix(in srgb, var(--color-cyan) 60%, transparent);
+}
+.field:focus {
+  outline: none;
+  border-bottom-color: var(--color-cyan);
+  box-shadow: 0 1px 0 0 var(--color-cyan);
+}
+.field[aria-invalid="true"] {
+  border-bottom-color: #ff8a8a;
+  box-shadow: 0 1px 0 0 #ff8a8a;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .page-enter,
+  .beam-pulse,
+  .ring-out {
+    animation: none;
+  }
+  .btn,
+  .btn::after,
+  .btn .arrow {
+    transition: none;
+  }
+}
